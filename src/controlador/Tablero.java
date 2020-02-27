@@ -13,8 +13,10 @@ public class Tablero{
     *  VARIABLES DE INSTANCIA 
     */
 
-    private String[][] board = new String[15][15];
-
+    private String[][] boardCarros = new String[15][15];
+    
+    private String[][] boardHuevos = new String[15][15];
+    
     private ArrayList<Carro> carros = new ArrayList<Carro>();
 
     private ArrayList<Huevo> huevos = new ArrayList<Huevo>();
@@ -35,10 +37,11 @@ public class Tablero{
         this.contadorCaguanos=0;
     }
 
-    public Tablero(String[][] board, ArrayList<Carro> carros, ArrayList<Huevo> huevos){
+    public Tablero(String[][] boardCarros, String[][] boardHuevos , ArrayList<Carro> carros, ArrayList<Huevo> huevos){
     	
         super();
-        this.board = board;
+        this.boardCarros = boardCarros;
+        this.boardHuevos = boardHuevos; 
         this.carros = carros;
         this.huevos = huevos;
     }
@@ -101,18 +104,19 @@ public class Tablero{
 			switch (orientacionAux) {
 			
 			case 1: 
-					if(board[posY][posX]==null & board[posY-1][posX]==null & board[posY-2][posX]==null) {
+					if(boardCarros[posY][posX]==null & boardCarros[posY-1][posX]==null & boardCarros[posY-2][posX]==null) {
 						orientacion = 'N';
 						
 						kromi = new Kromi(posX, posY, orientacion, cantOcupantes, fecha, anoFabricacion, marca);
 						
 						carros.add(kromi);
 						
-						board[kromi.getPosY()][kromi.getPosX()]="K";
-						board[kromi.getPosY()-1][kromi.getPosX()]="K";
-						board[kromi.getPosY()-2][kromi.getPosX()]="K";
+						boardCarros[kromi.getPosY()][kromi.getPosX()]="K";
+						boardCarros[kromi.getPosY()-1][kromi.getPosX()]="K";
+						boardCarros[kromi.getPosY()-2][kromi.getPosX()]="K";
 						
 						respuesta = true;
+						break;
 
 					}
 					else {
@@ -120,22 +124,27 @@ public class Tablero{
 					}
 			
 			case 2: 
-					if(board[posY][posX]==null & board[posY+1][posX]==null & board[posY+2][posX]==null) {
+					if(boardCarros[posY][posX]==null & boardCarros[posY+1][posX]==null & boardCarros[posY+2][posX]==null) {
 						orientacion = 'S';
 						kromi = new Kromi(posX, posY, orientacion, cantOcupantes, fecha, anoFabricacion, marca);
 						
 						carros.add(kromi);
 						
-						board[kromi.getPosY()][kromi.getPosX()]="K";
-						board[kromi.getPosY()+1][kromi.getPosX()]="K";
-						board[kromi.getPosY()+2][kromi.getPosX()]="K";
+						boardCarros[kromi.getPosY()][kromi.getPosX()]="K";
+						boardCarros[kromi.getPosY()+1][kromi.getPosX()]="K";
+						boardCarros[kromi.getPosY()+2][kromi.getPosX()]="K";
 						
 						respuesta = true;
+						break;
 					}
 					
 					else {
 						throw new Exception();
 					}
+			
+			default: 
+					respuesta = false;
+					break;
 				
 			}
 				
@@ -145,7 +154,7 @@ public class Tablero{
 			respuesta = false;
 			
 		}
-		return false;
+		return respuesta;
     }
 
     private boolean crearCaguanos() {
@@ -201,18 +210,19 @@ public class Tablero{
 			switch (orientacionAux) {
 			
 			case 1: 
-				if(board[posY][posX]==null & board[posY][posX-1]==null) {
+				if(boardCarros[posY][posX]==null & boardCarros[posY][posX-1]==null) {
 					orientacion = 'O';
 
 					caguano = new Caguanos(posX, posY, orientacion, cantOcupantes, fecha, alcanceTiro, colorConfetti);
 					
 					carros.add(caguano);
 					
-					board[caguano.getPosY()][caguano.getPosX()]="C";
-					board[caguano.getPosY()][caguano.getPosX()-1]="C";
+					boardCarros[caguano.getPosY()][caguano.getPosX()]="C";
+					boardCarros[caguano.getPosY()][caguano.getPosX()-1]="C";
 
 					
 					respuesta = true;
+					break;
 				}
 				
 				else {
@@ -220,22 +230,27 @@ public class Tablero{
 				}
 			
 			case 2: 
-				if(board[posY][posX]==null & board[posY][posX+1]==null) {
+				if(boardCarros[posY][posX]==null & boardCarros[posY][posX+1]==null) {
 					orientacion = 'E';
 
 					caguano = new Caguanos(posX, posY, orientacion, cantOcupantes, fecha, alcanceTiro, colorConfetti);
 					
 					carros.add(caguano);
 					
-					board[caguano.getPosY()][caguano.getPosX()]="C";
-					board[caguano.getPosY()][caguano.getPosX()+1]="C";
+					boardCarros[caguano.getPosY()][caguano.getPosX()]="C";
+					boardCarros[caguano.getPosY()][caguano.getPosX()+1]="C";
 					
 					respuesta = true;
+					break;
 				}
 				
 				else {
 					throw new Exception();
 				}
+				
+			default: 
+					respuesta = false;
+					break;
 				
 			}
 				
@@ -245,7 +260,7 @@ public class Tablero{
 			respuesta = false;
 			
 		}
-		return false;
+		return respuesta;
 	}
 
 	private boolean crearTrupalla() {
@@ -301,17 +316,18 @@ public class Tablero{
 			switch (orientacionAux) {
 			
 			case 1: 
-					if(board[posY][posX]==null) {
+					if(boardCarros[posY][posX]==null) {
 						orientacion = 'N';
 						
 						trupalla = new Trupalla(posX, posY, orientacion, cantOcupantes, fecha, nivelArmadura, nombreControlador);
 						
 						carros.add(trupalla);
 						
-						board[trupalla.getPosY()][trupalla.getPosX()]="T";
+						boardCarros[trupalla.getPosY()][trupalla.getPosX()]="T";
 
 						
 						respuesta = true;
+						break;
 
 					}
 					else {
@@ -319,34 +335,36 @@ public class Tablero{
 					}
 			
 			case 2: 
-				if(board[posY][posX]==null) {
+				if(boardCarros[posY][posX]==null) {
 					orientacion = 'S';
 					
 					trupalla = new Trupalla(posX, posY, orientacion, cantOcupantes, fecha, nivelArmadura, nombreControlador);
 					
 					carros.add(trupalla);
 					
-					board[trupalla.getPosY()][trupalla.getPosX()]="T";
+					boardCarros[trupalla.getPosY()][trupalla.getPosX()]="T";
 
 					
 					respuesta = true;
+					break;
 
 				}
 				else {
 					throw new Exception();
 				}
 			case 3: 
-				if(board[posY][posX]==null) {
+				if(boardCarros[posY][posX]==null) {
 					orientacion = 'O';
 					
 					trupalla = new Trupalla(posX, posY, orientacion, cantOcupantes, fecha, nivelArmadura, nombreControlador);
 					
 					carros.add(trupalla);
 					
-					board[trupalla.getPosY()][trupalla.getPosX()]="T";
+					boardCarros[trupalla.getPosY()][trupalla.getPosX()]="T";
 
 					
 					respuesta = true;
+					break;
 
 				}
 				else {
@@ -354,22 +372,27 @@ public class Tablero{
 				}
 			
 			case 4: 
-				if(board[posY][posX]==null) {
+				if(boardCarros[posY][posX]==null) {
 					orientacion = 'E';
 					
 					trupalla = new Trupalla(posX, posY, orientacion, cantOcupantes, fecha, nivelArmadura, nombreControlador);
 					
 					carros.add(trupalla);
 					
-					board[trupalla.getPosY()][trupalla.getPosX()]="T";
+					boardCarros[trupalla.getPosY()][trupalla.getPosX()]="T";
 
 					
 					respuesta = true;
+					break;
 
 				}
 				else {
 					throw new Exception();
 				}
+				
+			default: 
+					respuesta = false;
+					break;
 				
 			}
 				
@@ -379,16 +402,52 @@ public class Tablero{
 			respuesta = false;
 			
 		}
-		return false;
+		return respuesta;
 	}
 	
-    
-
 	public void lanzarHuevo(){
+		
+		int posX =  (int)(Math.random() * ((14 - 0) + 1)) + 0;
+		int posY =  (int)(Math.random() * ((14 - 0) + 1)) + 0;
+		int puntaje;
+		
+		if(this.boardCarros[posY][posX]!=null) {
+			
+			switch(this.boardCarros[posY][posX]) {
+			
+			case "K": puntaje = 3;
+					  break;
+			
+			case "C": puntaje = 2;
+					  break;
+				
+			case "T": puntaje = 1;
+					  break;
+				
+			default:  puntaje = 0;
+					  break;
+			
+			}
+			
+			Huevo huevo = new Huevo(posX, posY, puntaje);
+			
+			this.huevos.add(huevo);
+			
+			this.boardHuevos[posY][posX]="H";
+		}
+		
+		else {
+			
+			puntaje = 0;
+			
+			Huevo huevo = new Huevo(posX, posY, puntaje);
+			
+			this.huevos.add(huevo);
+			
+		}
 
     }
-    
-    
+       
     public void generarMapa() {
     	
     	do {
@@ -400,41 +459,41 @@ public class Tablero{
         		switch(random) {
         		
         		case 1: 
-        				if(contadorKromis<=3) {
+        				if(this.contadorKromis<3) {
         					if(crearKromi()) {
-        						contadorKromis++;
+        						this.contadorKromis++;
         						break;
         					}
         					else {
-        						continue;
+        						break;
         					}
         				}
         				else {
-        					continue;
+        					break;
         				}
 
         			
         		case 2: 
-    					if(contadorCaguanos<=5) {
+    					if(this.contadorCaguanos<5) {
         					if(crearCaguanos()) {
-        						contadorCaguanos++;
+        						this.contadorCaguanos++;
         						break;
         					}
         					else {
-        						continue;
+        						break;
         					}
     					}
     					else {
-    						continue;
+    						break;
     					}
         		case 3: 
-    					if(contadorTrupallas<=10) {
+    					if(this.contadorTrupallas<10) {
         					if(crearTrupalla()) {
-        						contadorTrupallas++;
+        						this.contadorTrupallas++;
         						break;
         					}
         					else {
-        						continue;
+        						break;
         					}
     					}
     					else {
@@ -449,17 +508,17 @@ public class Tablero{
     	}while(carros.size()<18);
     }
 
-    public void mostrarMatriz(){
+    public void revelarMatriz(){
     	
-        for(int ext = 0; ext < this.board.length; ext++) {
+        for(int ext = 0; ext < this.boardCarros.length; ext++) {
         	
         	System.out.println(" ");
         	
-        	for(int inter = 0; inter < this.board[ext].length; inter++) {
+        	for(int inter = 0; inter < this.boardCarros[ext].length; inter++) {
         		
-        		String posicionAux = this.board[ext][inter];
+        		String posicionAux = this.boardCarros[ext][inter];
         		
-        		if(this.board[ext][inter]==null) {
+        		if(this.boardCarros[ext][inter]==null) {
         			
         			posicionAux = " ";
         			System.out.printf("%-2s %-2s", "|",posicionAux);
@@ -467,12 +526,36 @@ public class Tablero{
         		
         		else {
         			
-        			System.out.printf("%-2s %-2s", "|",this.board[ext][inter]);
+        			System.out.printf("%-2s %-2s", "|",this.boardCarros[ext][inter]);
         		}
         	}
         }
     }
 
+    public void mostrarMapaHuevos() {
+    	
+        for(int ext = 0; ext < this.boardHuevos.length; ext++) {
+        	
+        	System.out.println(" ");
+        	
+        	for(int inter = 0; inter < this.boardHuevos[ext].length; inter++) {
+        		
+        		String posicionAux = this.boardHuevos[ext][inter];
+        		
+        		if(this.boardHuevos[ext][inter]==null) {
+        			
+        			posicionAux = " ";
+        			System.out.printf("%-2s %-2s", "|",posicionAux);
+        		}
+        		
+        		else {
+        			
+        			System.out.printf("%-2s %-2s", "|",this.boardHuevos[ext][inter]);
+        		}
+        	}
+        }
+    }
+    
     public static void calcularPuntaje(){
 
     }
@@ -483,7 +566,7 @@ public class Tablero{
     */
 
     public String[][] getBoard(){
-        return this.board;
+        return this.boardCarros;
     }
 
     public ArrayList<Carro> getCarros(){
@@ -494,8 +577,8 @@ public class Tablero{
         return this.huevos;
     }
 
-    public void setBoard(String [][] board){
-        this.board = board;
+    public void setBoard(String [][] boardCarros){
+        this.boardCarros  = boardCarros;
     }
 
     public void setCarros(ArrayList<Carro> carros){
@@ -505,6 +588,30 @@ public class Tablero{
     public void setHuevos(ArrayList<Huevo> huevos){
         this.huevos = huevos;
     }
+    
+	public int getContadorKromis() {
+		return contadorKromis;
+	}
+
+	public void setContadorKromis(int contadorKromis) {
+		this.contadorKromis = contadorKromis;
+	}
+
+	public int getContadorCaguanos() {
+		return contadorCaguanos;
+	}
+
+	public void setContadorCaguanos(int contadorCaguanos) {
+		this.contadorCaguanos = contadorCaguanos;
+	}
+
+	public int getContadorTrupallas() {
+		return contadorTrupallas;
+	}
+
+	public void setContadorTrupallas(int contadorTrupallas) {
+		this.contadorTrupallas = contadorTrupallas;
+	}
 
     public String toString(){
     	String string = "";

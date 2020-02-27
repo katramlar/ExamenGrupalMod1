@@ -8,7 +8,14 @@ public class Main {
 		
 		Tablero board = new Tablero();		
         board.generarMapa();
-		board.mostrarMatriz();		
+		board.revelarMatriz();	
+		System.out.println(" ");
+        board.lanzarHuevo();
+        board.lanzarHuevo();
+        board.lanzarHuevo();
+        board.lanzarHuevo();
+		board.mostrarMapaHuevos();
+		System.out.println("");
 		
 	}
 }

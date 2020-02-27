@@ -6,7 +6,7 @@ public class Huevo {
 	 * Campos de la clase huevo
 	 */
 	
-
+	private int posX;
 	private int posY;
 	private int puntaje;
 
@@ -15,19 +15,18 @@ public class Huevo {
 	 */
 
 	
-	public Huevo(int posY, int puntaje, int posX) {
+	public Huevo(int posX, int posY, int puntaje) {
 		super();
+		this.posX = posX;
 		this.posY = posY;
 		this.puntaje = puntaje;
-		this.posX = posX;
+
 	}
 	
 	/*
 	 * Getters y Setters clase Huevo
 	 */
 
-	
-	private int posX;
 	public int getPosX() {
 		return posX;
 	}
