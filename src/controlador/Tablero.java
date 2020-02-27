@@ -405,10 +405,10 @@ public class Tablero{
 		return respuesta;
 	}
 	
-	public void lanzarHuevo(){
+	public void lanzarHuevo(int posX2, int posY2){
 		
-		int posX =  (int)(Math.random() * ((14 - 0) + 1)) + 0;
-		int posY =  (int)(Math.random() * ((14 - 0) + 1)) + 0;
+		int posX = posX2 ; // =  (int)(Math.random() * ((14 - 0) + 1)) + 0;
+		int posY = posY2; // =  (int)(Math.random() * ((14 - 0) + 1)) + 0;
 		int puntaje;
 		
 		if(this.boardCarros[posY][posX]!=null) {
