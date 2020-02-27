@@ -18,9 +18,7 @@ public class Main {
         boardS[2][0] = "K";
 		
 		board.setBoard(boardS);
-		board.mostrarMatriz();
-
-		
+		board.mostrarMatriz();		
 		
 	}
 }
