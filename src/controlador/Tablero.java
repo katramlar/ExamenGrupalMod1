@@ -35,6 +35,18 @@ public class Tablero{
         this.contadorKromis=0;
         this.contadorTrupallas=0;
         this.contadorCaguanos=0;
+        
+    	for(int i=0;i<15;i++) {
+    		for(int j=0;j<15;j++) {
+    			this.boardCarros[i][j]=" ";
+    		}
+    	}
+    	
+    	for(int i=0;i<15;i++) {
+    		for(int j=0;j<15;j++) {
+    			this.boardHuevos[i][j]=" ";
+    		}
+    	}
     }
 
     public Tablero(String[][] boardCarros, String[][] boardHuevos , ArrayList<Carro> carros, ArrayList<Huevo> huevos){
@@ -62,7 +74,7 @@ public class Tablero{
 		 *  - El año de fabricación
 		 *  - La marca
 		 */
-		String dia = Integer.toString((int)(Math.random() * ((31 - 1) + 1)) + 1);
+		String dia = Integer.toString((int)(Math.random() * ((29 - 1) + 1)) + 1);
 		String mes = Integer.toString((int)(Math.random() * ((12 - 1) + 1)) + 1);
 		String ano = Integer.toString((int)(Math.random() * ((2020 - 1990) + 1)) + 1990);
 		
@@ -104,7 +116,7 @@ public class Tablero{
 			switch (orientacionAux) {
 			
 			case 1: 
-					if(boardCarros[posY][posX]==null & boardCarros[posY-1][posX]==null & boardCarros[posY-2][posX]==null) {
+					if(boardCarros[posY][posX]==" " & boardCarros[posY-1][posX]==" " & boardCarros[posY-2][posX]==" ") {
 						orientacion = 'N';
 						
 						kromi = new Kromi(posX, posY, orientacion, cantOcupantes, fecha, anoFabricacion, marca);
@@ -112,8 +124,8 @@ public class Tablero{
 						carros.add(kromi);
 						
 						boardCarros[kromi.getPosY()][kromi.getPosX()]="K";
-						boardCarros[kromi.getPosY()-1][kromi.getPosX()]="K";
-						boardCarros[kromi.getPosY()-2][kromi.getPosX()]="K";
+						boardCarros[kromi.getPosY()-1][kromi.getPosX()]="K"; // getPosY2();
+						boardCarros[kromi.getPosY()-2][kromi.getPosX()]="K"; // getPosY3();
 						
 						respuesta = true;
 						break;
@@ -124,15 +136,15 @@ public class Tablero{
 					}
 			
 			case 2: 
-					if(boardCarros[posY][posX]==null & boardCarros[posY+1][posX]==null & boardCarros[posY+2][posX]==null) {
+					if(boardCarros[posY][posX]==" " & boardCarros[posY+1][posX]==" " & boardCarros[posY+2][posX]==" ") {
 						orientacion = 'S';
 						kromi = new Kromi(posX, posY, orientacion, cantOcupantes, fecha, anoFabricacion, marca);
 						
 						carros.add(kromi);
 						
 						boardCarros[kromi.getPosY()][kromi.getPosX()]="K";
-						boardCarros[kromi.getPosY()+1][kromi.getPosX()]="K";
-						boardCarros[kromi.getPosY()+2][kromi.getPosX()]="K";
+						boardCarros[kromi.getPosY()+1][kromi.getPosX()]="K"; // getPosY2();
+						boardCarros[kromi.getPosY()+2][kromi.getPosX()]="K"; // getPosY3();
 						
 						respuesta = true;
 						break;
@@ -210,7 +222,7 @@ public class Tablero{
 			switch (orientacionAux) {
 			
 			case 1: 
-				if(boardCarros[posY][posX]==null & boardCarros[posY][posX-1]==null) {
+				if(boardCarros[posY][posX]==" " & boardCarros[posY][posX-1]==" ") {
 					orientacion = 'O';
 
 					caguano = new Caguanos(posX, posY, orientacion, cantOcupantes, fecha, alcanceTiro, colorConfetti);
@@ -218,7 +230,7 @@ public class Tablero{
 					carros.add(caguano);
 					
 					boardCarros[caguano.getPosY()][caguano.getPosX()]="C";
-					boardCarros[caguano.getPosY()][caguano.getPosX()-1]="C";
+					boardCarros[caguano.getPosY()][caguano.getPosX()-1]="C"; // getPosX2();
 
 					
 					respuesta = true;
@@ -230,7 +242,7 @@ public class Tablero{
 				}
 			
 			case 2: 
-				if(boardCarros[posY][posX]==null & boardCarros[posY][posX+1]==null) {
+				if(boardCarros[posY][posX]==" " & boardCarros[posY][posX+1]==" ") {
 					orientacion = 'E';
 
 					caguano = new Caguanos(posX, posY, orientacion, cantOcupantes, fecha, alcanceTiro, colorConfetti);
@@ -238,7 +250,7 @@ public class Tablero{
 					carros.add(caguano);
 					
 					boardCarros[caguano.getPosY()][caguano.getPosX()]="C";
-					boardCarros[caguano.getPosY()][caguano.getPosX()+1]="C";
+					boardCarros[caguano.getPosY()][caguano.getPosX()+1]="C"; // getPosX2();
 					
 					respuesta = true;
 					break;
@@ -316,7 +328,7 @@ public class Tablero{
 			switch (orientacionAux) {
 			
 			case 1: 
-					if(boardCarros[posY][posX]==null) {
+					if(boardCarros[posY][posX]==" ") {
 						orientacion = 'N';
 						
 						trupalla = new Trupalla(posX, posY, orientacion, cantOcupantes, fecha, nivelArmadura, nombreControlador);
@@ -335,7 +347,7 @@ public class Tablero{
 					}
 			
 			case 2: 
-				if(boardCarros[posY][posX]==null) {
+				if(boardCarros[posY][posX]==" ") {
 					orientacion = 'S';
 					
 					trupalla = new Trupalla(posX, posY, orientacion, cantOcupantes, fecha, nivelArmadura, nombreControlador);
@@ -353,7 +365,7 @@ public class Tablero{
 					throw new Exception();
 				}
 			case 3: 
-				if(boardCarros[posY][posX]==null) {
+				if(boardCarros[posY][posX]==" ") {
 					orientacion = 'O';
 					
 					trupalla = new Trupalla(posX, posY, orientacion, cantOcupantes, fecha, nivelArmadura, nombreControlador);
@@ -372,7 +384,7 @@ public class Tablero{
 				}
 			
 			case 4: 
-				if(boardCarros[posY][posX]==null) {
+				if(boardCarros[posY][posX]==" ") {
 					orientacion = 'E';
 					
 					trupalla = new Trupalla(posX, posY, orientacion, cantOcupantes, fecha, nivelArmadura, nombreControlador);
@@ -411,7 +423,7 @@ public class Tablero{
 		int posY = posY2; // =  (int)(Math.random() * ((14 - 0) + 1)) + 0;
 		int puntaje;
 		
-		if(this.boardCarros[posY][posX]!=null) {
+		if(this.boardCarros[posY][posX]!=" " & this.boardHuevos[posY][posX]!="H") {
 			
 			switch(this.boardCarros[posY][posX]) {
 			
@@ -511,55 +523,80 @@ public class Tablero{
 
     public void revelarMatriz(){
     	
-        for(int ext = 0; ext < this.boardCarros.length; ext++) {
-        	
-        	System.out.println(" ");
-        	
-        	for(int inter = 0; inter < this.boardCarros[ext].length; inter++) {
-        		
-        		String posicionAux = this.boardCarros[ext][inter];
-        		
-        		if(this.boardCarros[ext][inter]==null) {
-        			
-        			posicionAux = "";
-        			System.out.printf("%-1s%-1s","|",posicionAux);
-        		}
-        		
-        		else {
-        			
-        			System.out.printf("%-1s%-1s", "|",this.boardCarros[ext][inter]);
-        		}
-        		
-        		System.out.printf("%-1s","_");
-        	}
-        }
+    	System.out.printf("%-5s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s \n","    0","  1","  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11"," 12"," 13"," 14");
+
+    	
+    	for(int i = 0; i < this.boardCarros.length; i++)
+		{
+			System.out.println("---------------------------------------------------------------");
+				System.out.printf("%-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s\n",
+					i,"|",this.boardCarros[i][0],"|",this.boardCarros[i][1],"|",this.boardCarros[i][2],"|",this.boardCarros[i][3],"|",this.boardCarros[i][4],
+					"|",this.boardCarros[i][5],"|",this.boardCarros[i][6],"|",this.boardCarros[i][7],"|",this.boardCarros[i][8],"|",this.boardCarros[i][9],
+					"|",this.boardCarros[i][10],"|",this.boardCarros[i][11],"|",this.boardCarros[i][12],"|",this.boardCarros[i][13],"|",this.boardCarros[i][14],"|");
+		}
+			System.out.println("----------------------------------------------------------------");
+    	
+//        for(int ext = 0; ext < this.boardCarros.length; ext++) {
+//        	
+//        	System.out.println(" ");
+//        	
+//        	for(int inter = 0; inter < this.boardCarros[ext].length; inter++) {
+//        		
+//        		String posicionAux = this.boardCarros[ext][inter];
+//        		
+//        		if(this.boardCarros[ext][inter]==null) {
+//        			
+//        			posicionAux = "";
+//        			System.out.printf("%-1s%-1s","|",posicionAux);
+//        		}
+//        		
+//        		else {
+//        			
+//        			System.out.printf("%-1s%-1s", "|",this.boardCarros[ext][inter]);
+//        		}
+//        		
+//        		System.out.printf("%-1s","_");
+//        	}
+//        }
     }
 
     public void mostrarMapaHuevos() {
     	
-        for(int ext = 0; ext < this.boardHuevos.length; ext++) {
-        	
-        	System.out.println(" ");
-        	
-        	for(int inter = 0; inter < this.boardHuevos[ext].length; inter++) {
-        		
-        		String posicionAux = this.boardHuevos[ext][inter];
-        		
-        		if(this.boardHuevos[ext][inter]==null) {
-        			
-        			posicionAux = " ";
-        			System.out.printf("%-1s%-1s", "|",posicionAux);
-        		}
-        		
-        		else {
-        			
-        			System.out.printf("%-1s%-1s", "|",this.boardHuevos[ext][inter]);
-        		}
-        		
-        		System.out.printf("%-1s","_");
-        		
-        	}
-        }
+    	System.out.printf("%-5s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s \n","    0","  1","  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11"," 12"," 13"," 14");
+    	
+    	for(int i = 0; i < this.boardHuevos.length; i++)
+		{
+			System.out.println("---------------------------------------------------------------");
+				System.out.printf("%-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s\n",
+					i,"|",this.boardHuevos[i][0],"|",this.boardHuevos[i][1],"|",this.boardHuevos[i][2],"|",this.boardHuevos[i][3],"|",this.boardHuevos[i][4],
+					"|",this.boardHuevos[i][5],"|",this.boardHuevos[i][6],"|",this.boardHuevos[i][7],"|",this.boardHuevos[i][8],"|",this.boardHuevos[i][9],
+					"|",this.boardHuevos[i][10],"|",this.boardHuevos[i][11],"|",this.boardHuevos[i][12],"|",this.boardHuevos[i][13],"|",this.boardHuevos[i][14],"|");
+		}
+			System.out.println("---------------------------------------------------------------");
+    	
+//        for(int ext = 0; ext < this.boardHuevos.length; ext++) {
+//        	
+//        	System.out.println(" ");
+//        	
+//        	for(int inter = 0; inter < this.boardHuevos[ext].length; inter++) {
+//        		
+//        		String posicionAux = this.boardHuevos[ext][inter];
+//        		
+//        		if(this.boardHuevos[ext][inter]==null) {
+//        			
+//        			posicionAux = " ";
+//        			System.out.printf("%-1s%-1s", "|",posicionAux);
+//        		}
+//        		
+//        		else {
+//        			
+//        			System.out.printf("%-1s%-1s", "|",this.boardHuevos[ext][inter]);
+//        		}
+//        		
+//        		System.out.printf("%-1s","_");
+//        		
+//        	}
+//        }
     }
     
     public int calcularPuntaje(){
