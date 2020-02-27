@@ -1,4 +1,4 @@
-package principal;
+package objetos;
 
 public class Trupalla extends Carro {
 	

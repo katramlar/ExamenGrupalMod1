@@ -1,4 +1,4 @@
-package principal;
+package objetos;
 
 public class Kromi extends Carro {
 	
@@ -15,6 +15,7 @@ public class Kromi extends Carro {
 	 */
 
 	public Kromi(int posX, int posY, char orientacion, int cantOcupantes, String fecha, int anoFabricacion, String marca) {
+		
 		super(posX, posY, orientacion, cantOcupantes, fecha);
 		
 		this.anoFabricacion = anoFabricacion;

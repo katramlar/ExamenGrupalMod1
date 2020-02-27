@@ -1,4 +1,4 @@
-package principal;
+package objetos;
 
 public class Caguanos extends Carro {
 	

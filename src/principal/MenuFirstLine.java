@@ -1,4 +1,4 @@
-package battleship;
+package principal;
 
 import java.util.Scanner;
 
