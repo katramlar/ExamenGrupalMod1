@@ -444,6 +444,7 @@ public class Tablero{
 			
 			this.huevos.add(huevo);
 			
+			this.boardHuevos[posY][posX]="X";
 		}
 
     }
@@ -520,14 +521,16 @@ public class Tablero{
         		
         		if(this.boardCarros[ext][inter]==null) {
         			
-        			posicionAux = " ";
-        			System.out.printf("%-2s %-2s", "|",posicionAux);
+        			posicionAux = "";
+        			System.out.printf("%-1s%-1s","|",posicionAux);
         		}
         		
         		else {
         			
-        			System.out.printf("%-2s %-2s", "|",this.boardCarros[ext][inter]);
+        			System.out.printf("%-1s%-1s", "|",this.boardCarros[ext][inter]);
         		}
+        		
+        		System.out.printf("%-1s","_");
         	}
         }
     }
@@ -545,18 +548,31 @@ public class Tablero{
         		if(this.boardHuevos[ext][inter]==null) {
         			
         			posicionAux = " ";
-        			System.out.printf("%-2s %-2s", "|",posicionAux);
+        			System.out.printf("%-1s%-1s", "|",posicionAux);
         		}
         		
         		else {
         			
-        			System.out.printf("%-2s %-2s", "|",this.boardHuevos[ext][inter]);
+        			System.out.printf("%-1s%-1s", "|",this.boardHuevos[ext][inter]);
         		}
+        		
+        		System.out.printf("%-1s","_");
+        		
         	}
         }
     }
     
-    public static void calcularPuntaje(){
+    public int calcularPuntaje(){
+    	
+    	int puntajeFinal=0;
+    	
+    	for(Huevo elemento : this.huevos) {
+    		
+    		puntajeFinal =+ elemento.getPuntaje();
+    		
+    	}
+    	
+    	return puntajeFinal;
 
     }
 
