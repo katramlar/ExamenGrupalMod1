@@ -24,5 +24,6 @@ public class Main {
 		board.mostrarMapaHuevos();
 		System.out.println("");
 		
+		board.toStringAll();
 	}
 }
