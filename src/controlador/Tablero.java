@@ -26,6 +26,8 @@ public class Tablero{
 	private int contadorCaguanos;
 
 	private int contadorTrupallas;
+	
+	private int puntajeFinal;
 
     /*
     * CONSTRUCTORES 
@@ -35,6 +37,7 @@ public class Tablero{
         this.contadorKromis=0;
         this.contadorTrupallas=0;
         this.contadorCaguanos=0;
+        this.puntajeFinal=0;
         
     	for(int i=0;i<15;i++) {
     		for(int j=0;j<15;j++) {
@@ -421,8 +424,7 @@ public class Tablero{
 		
 		int posX = posX2 ; // =  (int)(Math.random() * ((14 - 0) + 1)) + 0;
 		int posY = posY2; // =  (int)(Math.random() * ((14 - 0) + 1)) + 0;
-		int puntaje = 0;
-		Carro carroAux;
+		int puntaje=0;
 		
 		Huevo huevo; 
 		
@@ -430,111 +432,122 @@ public class Tablero{
 		
 		if(this.boardCarros[posY][posX]!=" " & this.boardHuevos[posY][posX]!="H") {
 			
+			this.boardHuevos[posY][posX]="H";
+			
 			switch(this.boardCarros[posY][posX]) {
 			
-			case "K": huevo.setPuntaje(3);
-			
+			case "K": 
+					  huevo.setVehiculoGolpeado("Kromi");
 					  for(Carro element : carros) {
-						  
 						  if(element.getPosX()==posX & (element.getPosY()==posY | element.getPosY2()==posY | element.getPosY3()==posY)) {
-							  
-							  carroAux = element;
-							  
-							  if(carroAux.getVidas()>0) {
+							  switch(element.getVidas()) {
+							  case 0:
+								  	 break;
 								  
-								  carroAux.disminuirVida();
+							  case 1:
+								     puntaje = 13;
+								     element.disminuirVida();
+								     break;
 								  
+							  case 2:
+								  	 puntaje = 3;
+								  	 element.disminuirVida();
+								  	 break;
+								  
+							  case 3:
+								  	 puntaje = 3;
+								  	 element.disminuirVida();
+								  	 break;
+								  
+							  default:
+								     puntaje = 0;
+								     break;
 							  }
-							  else if(carroAux.getVidas()==1) {
-								  
-								  carroAux.disminuirVida();
-								  
-								  huevo.setPuntaje(13);
-							  }
-							  
-							  else if(carroAux.getVidas()==0) {
-								  
-								  huevo.setPuntaje(0);
-							  }
+							  //System.err.println(puntaje);
+							  this.puntajeFinal += puntaje;
+							  huevo.setPuntaje(puntaje);
 						  }
 					  }
 					  break;
 			
-			case "C": huevo.setPuntaje(2);
+			case "C": 
+					  huevo.setVehiculoGolpeado("Caguano");
 					  for(Carro element : carros) {
 						  
 						  if((element.getPosX()==posX | element.getPosX2()==posX) & element.getPosY()==posY) {
 							  
-							  carroAux = element;
+							  switch(element.getVidas()) {
 							  
-							  if(carroAux.getVidas()>0) {
+							  case 0:
+								  	 break;
 								  
-								  carroAux.disminuirVida();
+							  case 1:
+								     puntaje = 9;
+								     element.disminuirVida();
+								     break;
 								  
+							  case 2:
+								  	 puntaje = 2;
+								  	 element.disminuirVida();
+								  	 break;
+
+								  
+							  default:
+								     puntaje = 0;
+								     break;
+
 							  }
-							  else if(carroAux.getVidas()==1) {
-								  
-								  carroAux.disminuirVida();
-								  
-								  huevo.setPuntaje(9);
-							  }
-							  
-							  else if(carroAux.getVidas()==0) {
-								  
-								  huevo.setPuntaje(0);
-							  }
+							  //System.err.println(puntaje);
+							  this.puntajeFinal += puntaje;
+							  huevo.setPuntaje(puntaje);
 						  }
 					  }
-							  break;
+					  break;
 				
-			case "T": huevo.setPuntaje(1);
+			case "T": 
+					  huevo.setVehiculoGolpeado("Trupalla");
 					  for(Carro element : carros) {
 						  
 						  if(element.getPosX()==posX & element.getPosY()==posY) {
 							  
-							  carroAux = element;
+							  switch(element.getVidas()) {
 							  
-							  if(carroAux.getVidas()>0) {
+							  case 0:
+								  	 break;
 								  
-								  carroAux.disminuirVida();
+							  case 1:
+								     puntaje = 1;
+								     element.disminuirVida();
+								     break;
 								  
+							  default:
+								     puntaje = 0;
+								     break;
+
 							  }
-							  else if(carroAux.getVidas()==1) {
-								  
-								  carroAux.disminuirVida();
-								  
-								  huevo.setPuntaje(1);
-							  }
-							  
-							  else if(carroAux.getVidas()==0) {
-								  
-								  huevo.setPuntaje(0);
-							  }
+							  //System.err.println(puntaje);
+							  this.puntajeFinal += puntaje;
+							  huevo.setPuntaje(puntaje);
 						  }
 					  }
-			
 					  break;
 				
 			default:  puntaje = 0;
 					  break;
 			
 			}
-			
-			this.huevos.add(huevo);
-			
-			this.boardHuevos[posY][posX]="H";
 		}
 		
 		else {
 			
 			puntaje = 0;
 			
-			huevo = new Huevo(posX, posY, puntaje);
-			
-			this.huevos.add(huevo);
+			huevo.setPuntaje(puntaje);
 			
 			this.boardHuevos[posY][posX]="X";
 		}
+		
+		this.huevos.add(huevo);
 
     }
        
@@ -676,21 +689,63 @@ public class Tablero{
 //        }
     }
     
-    public int calcularPuntaje(){
+    public void calcularPuntaje(){
     	
-    	int puntajeFinal=0;
+    	int huevosImpactados=0;
+    	int carrosRestantes=0;
     	
-    	for(Huevo elemento : this.huevos) {
+    	for(Huevo huevo : huevos) {
     		
-    		puntajeFinal =+ elemento.getPuntaje();
-    		
+    		if(huevo.getPuntaje()>0) {
+    			
+    			huevosImpactados++;
+    		}
+    	}
+
+    	for(Carro element : carros) {
+    		//System.out.println("Tipo carro: "+element.getTipoObj()+" "+" Coordenada X-1: "+element.getPosX()+" Coordenada Y-1: "+element.getPosY()+" Vida restante: "+element.getVidas());
+   
+    		if(element.getVidas()!=0) {
+    			carrosRestantes++;
+    		}
     	}
     	
-    	return puntajeFinal;
+    	
+    	System.out.println("Carros restantes: "+carrosRestantes);
+    	System.out.println("Huevos lanzados:  "+this.huevos.size());
+    	System.out.println("Huevos impactados: "+huevosImpactados);
+    	System.out.println("Puntaje total: "+this.puntajeFinal+"\n");
+    	
+    	System.out.println("> puntaje por huevo: \n");
+    	for(int i=0;i<huevos.size();i++) {
+    		System.out.println("Info de Huevo número "+i+1);
+    		System.out.println(huevos.get(i).toString());
+    	}
+    	
+//    	int puntaje = 0;
+//    	
+//    	for(Huevo elemento : this.huevos) {
+//    		
+//    		puntaje =+ elemento.getPuntaje();
+//    		
+//    	}
+//    	
+//    	return puntaje ;
 
     }
 
-
+    public void mostrarDestruidos() {
+    	
+    	for(Carro element : carros) {
+    		if(element.getVidas()==0) {
+//        		System.out.println("Tipo carro: "+element.getTipoObj()+" "
+//    		+" X-1: "+element.getPosX()
+//    		+" Y-1: "+element.getPosY()
+//    		+" Vida: "+element.getVidas());
+    			System.out.println(element.toString());
+    		}
+    	}
+    }
     /*
     * GETTERS Y SETTERS 
     */

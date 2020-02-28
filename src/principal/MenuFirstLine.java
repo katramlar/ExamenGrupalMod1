@@ -1,47 +1,56 @@
 package principal;
 
 import java.util.Scanner;
+
+import controlador.Tablero;
+import objetos.Huevo;
 public class MenuFirstLine {
 	
-	public static Scanner sc = new Scanner(System.in);
-	public static Tablero tablero = new Tablero();
-	public static Huevo huevo = new Huevo();
+	private Scanner sc = new Scanner(System.in);
+	private Tablero tablero;
 	
-	 
-	@SuppressWarnings("resource")
-	public static void main(String[] args) {
-		
-		seleccion(Menu());
-		
-	}	
-	
-
-	public static int Menu() { /*Menu de visualizacion para usuario, retorna seleccion 
-	 							que serÃ¡ utilizada en el metodo siguiente*/
+	public int Menu(Tablero tablero) { /*Menu de visualizacion para usuario, retorna seleccion 
+	 							que será utilizada en el metodo siguiente*/
 		int selec;
+		this.tablero = tablero;
+		tablero.generarMapa();
 		
 		System.out.println
+//						("\n"+"------ Simulador de Batalla ------"+"\n"+
+//						"1. Instrucciones"+"\n"+
+//						"2. Iniciar nueva simulación"+"\n"+
+//						"3. Información del enemigo (PKS)"+"\n"+
+//						"4. Obtener Puntaje"+"\n"+
+//						"5. Salir"+"\n"+
+//						 "------- Ingrese una opción -------");
 						("\n"+"------ Simulador de Batalla ------"+"\n"+
 						"1. Instrucciones"+"\n"+
-						"2. Iniciar nueva simulaciÃ³n"+"\n"+
-						"3. InformaciÃ³n del enemigo (PKS)"+"\n"+
+						"2. Lanzar huevo"+"\n"+
+						"3. Mostrar Mapa de Huevos"+"\n"+
 						"4. Obtener Puntaje"+"\n"+
-						"5. Salir"+"\n"+
-						 "------- Ingrese una opciÃ³n -------");
+						"5. Finalizar juego (muestra mapa de carros) "+"\n"+
+						 "------- Ingrese una opción -------");
 	
 		Scanner sc = new Scanner(System.in);
 		
 		while(true) {
 			String aux = sc.next();
 			try {
-				selec = Integer.parseInt(aux);
-				if(selec>5 | selec<1) {
-					throw new Exception();
+				
+				if(aux.contains("hack.revelarmapa(this.tablero);")) {
+					selec = 6;
+					break;
 				}
-				break;
+				else {
+					selec = Integer.parseInt(aux);
+					if(selec>5 | selec<1) {
+						throw new Exception();
+					}
+					break;
+				}
 			}
 			catch(Exception e) {
-				System.err.println("Ingrese una opciÃ³n vÃ¡lida (entre 1-5).");
+				System.err.println("Ingrese una opción válida (entre 1-5).");
 			}
 		}
 		return selec;
@@ -49,51 +58,50 @@ public class MenuFirstLine {
 	}
 	
 	
-	public static void seleccion(int selec) {
+	public void seleccion(int selec) {
+		
 
 		switch(selec) {
 		case 1:
-			casoUno();
-			seleccion(Menu());
+			mostrarInfo(); // casoUno()
+			seleccion(Menu(this.tablero));
 			break;
 		case 2:
-			casoDos();
-			seleccion(Menu());
+			lanzarHuevo(); // casoDos()
+			seleccion(Menu(this.tablero));
 			break;
 		case 3:
-			casoTres();
-			seleccion(Menu());
+			mostrarMapaHuevos(); // casoTres()
+			seleccion(Menu(this.tablero));
 			break;
 		case 4:
-			casoCuatro();
-			seleccion(Menu());
+			mostrarPuntajeAcumulativo(); // casoCuatro()
+			seleccion(Menu(this.tablero));
 			break;
 		case 5:
-			casoCinco();
+			mostrarYSalir(); // casoCinco()
 			break;
+		
+		case 6: 
+			tablero.revelarMatriz();
+			seleccion(Menu(this.tablero));
 		default:
-			seleccion(Menu());
+			seleccion(Menu(this.tablero));
 			break;	
 		}
 	}
 	
 	
-	public static void casoUno() { 
+	public void mostrarInfo() { 
 		System.out.println(
 				"En un tablero de 15x15 se ubicaran aleatoriamente "+ "\n"
-				+ "3 Kromis, 5 Caguanos y 10 Trupallas, deberÃ¡s lanzar "+ "\n"
+				+ "3 Kromis, 5 Caguanos y 10 Trupallas, deberás lanzar "+ "\n"
 				+ "huevos en las coordenadas(x,y) hasta derribar los carros.");
 	}
 	
 	
-	public static void casoDos() {
+	public void lanzarHuevo() {
 		
-		/*
-		 * Genera mapa con carros posicionados (no se muestra a usuario)
-		 */
-		
-		tablero.generarMapa();		
-
 		/*
 		 * Solicitar coordenadas de proyectil a lanzar
 		 */
@@ -113,7 +121,7 @@ public class MenuFirstLine {
 				break;
 			}
 			catch(Exception e) {
-				System.err.println("Ingrese una opciÃ³n vÃ¡lida (entre 0-14).");
+				System.err.println("Ingrese una opción válida (entre 0-14).");
 			}
 		}
 		
@@ -128,7 +136,7 @@ public class MenuFirstLine {
 				break;
 			}
 			catch(Exception e) {
-				System.err.println("Ingrese una opciÃ³n vÃ¡lida (entre 0-14).");
+				System.err.println("Ingrese una opción válida (entre 0-14).");
 			}
 		}
 		
@@ -136,45 +144,38 @@ public class MenuFirstLine {
 		 * Asigna puntajes a cada lanzamiento
 		 */
 		
-		tablero.lanzarHuevo(posX, posY);
+		this.tablero.lanzarHuevo(posX, posY);
 		
-		
+		System.out.println("\n" +"----- Proyectil Lanzado -----"+"\n");
 
+		
+		
+//		String selec = "";
+//		System.out.println("\n" + "Desea lanzar más proyectiles? (S/N)");
+//		selec = sc.next();
+//		if(selec.equalsIgnoreCase("s")) {
+//			casoDos();
+//		}else {
+//			casoCuatro();
+//		}
+
+	}
+	
+	
+	public void mostrarMapaHuevos() {
+		
 		/*
 		 * Muestra tablero con impactos de proyectil
 		 */
-		
-		System.out.println("\n" +"----- Proyectil Lanzado -----"+"\n");
 		tablero.mostrarMapaHuevos(); 
-		
-		
-		String selec = "";
-		System.out.println("\n" + "Desea lanzar mÃ¡s proyectiles? (S/N)");
-		selec = sc.next();
-		if(selec.equalsIgnoreCase("s")) {
-			casoDos();
-		}else {
-			casoCuatro();
-		}
-
 	}
 	
 	
-	public static void casoTres() {
-		
-		/*
-		 * Despliega informacion de carros
-		 */
-		
-		tablero.toStringAll();
-	}
-	
-	
-	public static void casoCuatro() {
-		
-		
-		System.out.println("------- Puntaje obtenido -------");
-		System.out.println(tablero.calcularPuntaje()); 
+	public void mostrarPuntajeAcumulativo() {
+		int cantHuevos = tablero.getHuevos().size();
+		System.out.println("------- Resumen de puntaje -------\n");
+		tablero.calcularPuntaje();
+		//System.out.println("Acumulado: "+tablero.calcularPuntaje()); 
 		/*Detallar la cantidad de hits a cada vehiculo
 		 * ejemplo
 		 * Kromis = 3ptos
@@ -182,25 +183,29 @@ public class MenuFirstLine {
 		 * 
 		 * solo si sobra tiempo = agregar cuantos vehiculos derribÃ³ de cada uno
 		 */
-		String selec = "";
-		System.out.println("Desea lanzar mÃ¡s proyectiles? (S/N)");
-		selec = sc.next();
-		if(selec.equalsIgnoreCase("s")) {
-			casoDos();
-		}else {
-			seleccion(Menu());
-		}
+//		String selec = "";
+//		System.out.println("Desea lanzar más proyectiles? (S/N)");
+//		selec = sc.next();
+//		if(selec.equalsIgnoreCase("s")) {
+//			casoDos();
+//		}else {
+//			seleccion(Menu(this.tablero));
+//		}
 	}
 	
 
-	public static void casoCinco() {
+	public void mostrarYSalir() {
 		System.out.println("\n"+"---------- Posiciones del Enemigo ----------"+"\n");
 		tablero.revelarMatriz();
+		
+		System.out.println(" ");
+		System.out.println("---------- Vehículos destruidos ----------");
+		tablero.mostrarDestruidos();
 		//agregar resumen "obtuviste x puntos / 100 "
 		
 		
-		
-		System.out.println("\n"+ "Gracias por participar de la simulaciÃ³n"+"\n"+
+		System.out.println(" \n \n \n ");
+		System.out.println("\n"+ "Gracias por participar de la simulación"+"\n"+
 						   "---------- Comando FirstLine ----------");
 		System.exit(0);	
 	}
