@@ -72,7 +72,7 @@ public class Kromi extends Carro {
 						  +" Posicion X del objeto: " + this.posX + "\n"
 						  +" Posicion Y-1 del objeto: " + this.posY + "\n"
 						  +" Posicion Y-2 del objeto: " + this.posY2 + "\n"
-						  +" Posicion Y-3 del objeto: " + this.posY3
+						  +" Posicion Y-3 del objeto: " + this.posY3+"\n"
 						  +" Orientacion del objeto: " + Character.toString(this.orientacion) + "\n"
 						  +" Cantidad de ocupantes del objeto: " + this.cantOcupantes + "\n"
 						  +" Fecha de ingreso a la institucion del objeto: " + this.fecha + "\n"
