@@ -1,22 +1,25 @@
 package objetos;
 
+
+
+/**Este objeto es quien proporcionara informacion de los tiro en el tablero
+ * @author  katramlar, ivillarroelr, victorSoto2712
+ *
+ */
 public class Huevo {
 	
-	/*
-	 * Campos de la clase huevo
-	 */
-	
+		
 	private int posX;
 	private int posY;
 	private int puntaje;
 	private String vehiculoGolpeado;
 
-	/*
-	 * Constructor parametrizado clase Huevo
-	 */
-
+	/**
+	*Este constructor almacenara información proporionada por el usuario 
+	*por cada disparo, además del puntaje que puede obtener
+	*
+	*/
 	
-
 	public Huevo(int posX, int posY, int puntaje) {
 		super();
 		this.posX = posX;
@@ -25,9 +28,7 @@ public class Huevo {
 
 	}
 	
-	/*
-	 * Getters y Setters clase Huevo
-	 */
+	
 
 	public int getPosX() {
 		return this.posX;

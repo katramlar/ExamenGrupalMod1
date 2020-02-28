@@ -1,19 +1,25 @@
 package objetos;
 
+
+/**
+ * Corresponde a una de las clases hijas del Carro
+ * @author  katramlar, ivillarroelr, victorSoto2712
+ *
+ */
+
 public class Kromi extends Carro {
 	
-	/*
-	 * Campos de clase Kromi 
-	 */
-	
+		
 
 	private int anoFabricacion;
 	private String marca;
 
+	/**
+	*Este constructor almacenara información proporionada por el Tablero 
+	*Además entrega información adicional al usuario, en caso de ser necesario
+	*
+	*/
 	
-	/*
-	 * Constructor clase Kromi, requiere campos de superclase
-	 */
 
 	public Kromi(int posX, int posY, int posY2, int posY3, char orientacion, int cantOcupantes, String fecha, int anoFabricacion, String marca) {
 		
@@ -30,9 +36,7 @@ public class Kromi extends Carro {
 		
 	}
 	
-	/*
-	 * Getters y Setters instancia Kromi
-	 */
+	
 
 	public int getAnoFabricacion() {
 		return anoFabricacion;

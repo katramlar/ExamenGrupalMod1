@@ -7,12 +7,25 @@ import objetos.Kromi;
 import objetos.Caguanos;
 import objetos.Trupalla;
 
+
+
+/**
+ * @author katramlar, ivillarroelr, victorSoto2712
+ *
+ */
+
 public class Tablero{
 
-    /*
-    *  VARIABLES DE INSTANCIA 
-    */
-
+    /**
+     * @param boardCarros  "Arreglo de 15 x 15 que permite escribir los carros para su visualizacion"
+     * @param boardHuevos "Arreglo de huevos de 15 x 15 que permite escribir los huevos para su visualizacion"
+     * @param carros "ArrayList de objetos tipo Carro para guardar cada Kromi, Caguano o Trupalla que se genere"
+     * @param huevos "ArrayList de objetos tipo Huevo para guardar los objetos disparados"
+     * @param contadorKromis "integer que permite mantener el numero total de kromis"
+     * @param contadorCaguanos "integer que permite mantener el numero total de caguanos"
+     * @param contadorTrupallas "integer que permite mantener el numero total de trupallas"
+     * @param puntajeFinal "integer que permite guardar el puntaje acumulativo y mostrarlo al final"
+     */
     private String[][] boardCarros = new String[15][15];
     
     private String[][] boardHuevos = new String[15][15];
@@ -29,9 +42,10 @@ public class Tablero{
 	
 	private int puntajeFinal;
 
-    /*
-    * CONSTRUCTORES 
-    */
+	/**
+	 * <p> Constructor por defecto tablero que permite incializar valores de contadoresCarros y puntajeFinal en 0, ademas de poblar inicialmente los tableros con espacios vacios </p>
+	 */
+
     public Tablero(){
         super();
         this.contadorKromis=0;
@@ -52,6 +66,11 @@ public class Tablero{
     	}
     }
 
+	/**
+	 * <p> Constructor parametrizado que permite incializar valores de contadoresCarros y puntajeFinal en 0, ademas de poblar inicialmente los tableros con espacios vacios </p>
+	 * @deprecated "Se utiliza el constructor por defecto"
+	 */
+    
     public Tablero(String[][] boardCarros, String[][] boardHuevos , ArrayList<Carro> carros, ArrayList<Huevo> huevos){
     	
         super();
@@ -61,9 +80,12 @@ public class Tablero{
         this.huevos = huevos;
     }
 
-    /*
-    * METODOS ESPECIFICOS 
-    */
+
+    /**
+     * <p> Metodo que permite crear una Kromi en una posicion aleatoria del tablero, genera sus datos internos y la guarda en el ArrayList carros </p>
+     * 
+     * @return "El retorno es un valor booleano verdadero/falso si se creo o no el carro en el tablero"
+     */
     
     private boolean crearKromi() {
     	
@@ -172,6 +194,12 @@ public class Tablero{
 		return respuesta;
     }
 
+    /**
+     * <p> Metodo que permite crear un Caguano en una posicion aleatoria del tablero, genera sus datos internos y la guarda en el ArrayList carros </p>
+     * 
+     * @return "El retorno es un valor booleano verdadero/falso si se creo o no el carro en el tablero"
+     */
+    
     private boolean crearCaguanos() {
     	boolean respuesta;
     	
@@ -278,6 +306,12 @@ public class Tablero{
 		return respuesta;
 	}
 
+    /**
+     * <p> Metodo que permite crear una Trupalla en una posicion aleatoria del tablero, genera sus datos internos y la guarda en el ArrayList carros </p>
+     * 
+     * @return "El retorno es un valor booleano verdadero/falso si se creo o no el carro en el tablero"
+     */
+    
 	private boolean crearTrupalla() {
     	boolean respuesta;
     	
@@ -420,6 +454,12 @@ public class Tablero{
 		return respuesta;
 	}
 	
+    /**
+     * <p> Metodo que permite lanzar un huevo y asignar puntaje, exista o no un hit en un carro.  </p>
+     * 
+     * @return "No existen valores de retorno, solo lógica interna "
+     */
+	
 	public void lanzarHuevo(int posX2, int posY2){
 		
 		int posX = posX2 ; // =  (int)(Math.random() * ((14 - 0) + 1)) + 0;
@@ -550,7 +590,14 @@ public class Tablero{
 		this.huevos.add(huevo);
 
     }
-       
+    
+    /**
+     * <p> Metodo que permite generar el mapa lleno de carros, a traves de llamados a los creadores de carros anteriormente declarados.  </p>
+     * 
+     * @return "No existen valores de retorno, solo lógica interna "
+     */
+	
+	
     public void generarMapa() {
     	
     	do {
@@ -611,6 +658,12 @@ public class Tablero{
     	}while(carros.size()<18);
     }
 
+    /**
+     * <p> Metodo que dibuja la matriz de carros y los muestra .  </p>
+     * 
+     * @return "No existen valores de retorno,per se, solo lógica interna. Pero si dibuja en la consola los carros en la matriz "
+     */
+    
     public void revelarMatriz(){
     	
     	System.out.printf("%-5s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s \n","    0","  1","  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11"," 12"," 13"," 14");
@@ -650,6 +703,12 @@ public class Tablero{
 //        }
     }
 
+    /**
+     * <p> Metodo que dibuja la matriz de huevos y los muestra .  </p>
+     * 
+     * @return "No existen valores de retorno,per se, solo lógica interna. Pero si dibuja en la consola los huevos en la matriz "
+     */
+    
     public void mostrarMapaHuevos() {
     	
     	System.out.printf("%-5s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s %-3s \n","    0","  1","  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11"," 12"," 13"," 14");
@@ -688,6 +747,12 @@ public class Tablero{
 //        	}
 //        }
     }
+    
+    /**
+     * <p> Metodo que calcula el puntaje actual del jugador en base a los hits contra carros y despliega informacion relacionada .  </p>
+     * 
+     * @return "No existen valores de retorno,per se, solo lógica interna. Pero si despiega info general sobre carros restantes, huevos lanzados, huevos impactados, puntaje y datos del huevo "
+     */
     
     public void calcularPuntaje(){
     	
@@ -734,6 +799,12 @@ public class Tablero{
 
     }
 
+    /**
+     * <p> Metodo que permite mostrar los carros destruidos .  </p>
+     * 
+     * @return "No existen valores de retorno,per se, solo lógica interna. Pero si despliega informacion por consola de los objetos destruidos "
+     */
+    
     public void mostrarDestruidos() {
     	
     	for(Carro element : carros) {
@@ -746,6 +817,7 @@ public class Tablero{
     		}
     	}
     }
+    
     /*
     * GETTERS Y SETTERS 
     */

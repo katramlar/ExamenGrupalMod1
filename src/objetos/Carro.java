@@ -1,5 +1,11 @@
 package objetos;
 
+/**
+ * Corresponde a la Clase Madre de los todos los Carros que estaran distruidos en el tablero
+ * @author  katramlar, ivillarroelr, victorSoto2712
+ *
+ */
+
 public abstract class Carro {
 
 	protected int posX;
@@ -13,6 +19,13 @@ public abstract class Carro {
 	protected  int vidas;
 	protected String tipoObj;
 
+	/**
+	*Este constructor de la clase almacenara información de todos los carros 
+	*Además entrega información adicional al usuario, en caso de ser necesario
+	*
+	*/
+	
+	
 	public Carro(int posX, int posY, char orientacion, int cantOcupantes, String fecha) {
 		super();
 		this.posX = posX;

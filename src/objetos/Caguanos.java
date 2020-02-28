@@ -1,20 +1,26 @@
 package objetos;
 
+
+
+/**
+ * Corresponde a una de las clases hijas del Carro
+ * @author  katramlar, ivillarroelr, victorSoto2712
+ *
+ */
 public class Caguanos extends Carro {
 	
-	/*
-	 * Campos de clase Caguanos 
-	 */
+	
 	
 	private int alcanceTiro;
 	private String colorConfetti;
 
 
+	/**
+	*Este constructor almacenara información proporionada por el Tablero 
+	*Además entrega información adicional al usuario, en caso de ser necesario
+	*
+	*/
 	
-	/*
-	 * Constructor clase Caguenos, requiere campos de superclase
-	 */
-
 
 	public Caguanos(int posX, int posX2, int posY, char orientacion, int cantOcupantes, String fecha, int alcanceTiro, String colorConfetti) {
 		super(posX, posY, orientacion, cantOcupantes, fecha);
@@ -29,9 +35,7 @@ public class Caguanos extends Carro {
 		
 	}
 	
-	/*
-	 * Getters y Setters de clase Caguanos
-	 */
+
 	
 	public int getAlcanceTiro() {
 		return alcanceTiro;

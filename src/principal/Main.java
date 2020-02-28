@@ -2,12 +2,17 @@ package principal;
 
 import controlador.Tablero;
 
+/**
+ * @author ivillarroelr
+ *
+ */
 public class Main {
+	
 
 	public static void main(String[] args) {
 		
 		MenuFirstLine menu = new MenuFirstLine();
-		Tablero tablero = new Tablero();	
+        Tablero tablero = new Tablero();	
 		menu.seleccion(menu.Menu(tablero));
 			
 
