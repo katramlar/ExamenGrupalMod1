@@ -8,20 +8,50 @@ package objetos;
 
 public abstract class Carro {
 
+	/**
+	 * Posicion X del Carro
+	 */
 	protected int posX;
+	/**
+	 * Posicion X-2 del Carro para Caguanos
+	 */
 	protected int posX2;
+	/**
+	 * Posicion Y del Carro
+	 */
 	protected int posY;
+	/**
+	 * Posicion Y-2 del Carro para Kromis
+	 */
 	protected int posY2;
+	/**
+	 * Posicion Y-3 del Carro para Kromis
+	 */
 	protected int posY3;
+	/**
+	 * Orientacion esta puede ser Norte Sur Este Oeste (primera letra)
+	 */
 	protected char orientacion;
+	/**
+	 * Corresponde a la cantidad de ocupantes que van en el Carro
+	 */
 	protected int cantOcupantes;
+	/**
+	 * Corresponde a la fecha de ingreso a la institucion
+	 */
 	protected String fecha;
+	/**
+	 * Corresponde a la cantidad de vidas restantes del carro
+	 */
 	protected  int vidas;
+	/**
+	 * Corresponde a un String que indica que tipo de Carro es
+	 */
 	protected String tipoObj;
 
 	/**
-	*Este constructor de la clase almacenara información de todos los carros 
-	*Además entrega información adicional al usuario, en caso de ser necesario
+	*Este constructor de la clase almacenara informacion de todos los carros 
+	*Ademas entrega informacion adicional al usuario, en caso de ser necesario
 	*
 	*/
 	

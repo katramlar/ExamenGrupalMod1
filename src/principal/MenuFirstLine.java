@@ -7,15 +7,22 @@ import objetos.Huevo;
  *
  */
 public class MenuFirstLine {
+	
+	/**
+	 * Objeto tipo Scanner para obtener datos de entrada
+	 */
 	private Scanner sc = new Scanner(System.in);
+	
+	/**
+	 * Objeto tipo Tablero para iniciar la logica de la aplicacion
+	 */
 	private Tablero tablero;
 	
 	/**
-	 * @param recibe input de usuario por teclado para selección de menú
-	 * @return retorna valor int que será utilizado en switch de metodo seleccion
-	 * @throws excepciones si el input no es un número entre 1 y 5
+	 * @param tablero recibe input de usuario por teclado para seleccion de menu
+	 * @return retorna valor int que sera utilizado en switch de metodo seleccion
+	 * @throws excepciones si el input no es un numero entre 1 y 5
 	 */
-	
 	public int Menu(Tablero tablero) { 
 		int selec;
 		this.tablero = tablero;
@@ -23,18 +30,18 @@ public class MenuFirstLine {
 		System.out.println
 //						("\n"+"------ Simulador de Batalla ------"+"\n"+
 //						"1. Instrucciones"+"\n"+
-//						"2. Iniciar nueva simulación"+"\n"+
-//						"3. Información del enemigo (PKS)"+"\n"+
+//						"2. Iniciar nueva simulacion"+"\n"+
+//						"3. Informacion del enemigo (PKS)"+"\n"+
 //						"4. Obtener Puntaje"+"\n"+
 //						"5. Salir"+"\n"+
-//						 "------- Ingrese una opción -------");
+//						 "------- Ingrese una opcion -------");
 						("\n"+"------ Simulador de Batalla ------"+"\n"+
 						"1. Instrucciones"+"\n"+
 						"2. Lanzar huevo"+"\n"+
 						"3. Mostrar Mapa de Huevos"+"\n"+
 						"4. Obtener Puntaje"+"\n"+
 						"5. Finalizar juego (muestra mapa de carros) "+"\n"+
-						 "------- Ingrese una opción -------");
+						 "------- Ingrese una opcion -------");
 		Scanner sc = new Scanner(System.in);
 		while(true) {
 			String aux = sc.next();
@@ -52,14 +59,14 @@ public class MenuFirstLine {
 				}
 			}
 			catch(Exception e) {
-				System.err.println("Ingrese una opción válida (entre 1-5).");
+				System.err.println("Ingrese una opcion valida (entre 1-5).");
 			}
 		}
 		return selec;
 	}
 	/**
-	 * <p> Selección que llama a los métodos de juego </p>
-	 * @param recibe un int generado en MenuFirstLine
+	 * <p> Seleccion que llama a los metodos de juego </p>
+	 * @param selec recibe un int generado en MenuFirstLine
 	 */
 	public void seleccion(int selec) {
 		switch(selec) {
@@ -96,13 +103,12 @@ public class MenuFirstLine {
 	public void mostrarInfo() { 
 		System.out.println(
 				"En un tablero de 15x15 se ubicaran aleatoriamente "+ "\n"
-				+ "3 Kromis, 5 Caguanos y 10 Trupallas, deberás lanzar "+ "\n"
+				+ "3 Kromis, 5 Caguanos y 10 Trupallas, deberas lanzar "+ "\n"
 				+ "huevos en las coordenadas(x,y) hasta derribar los carros.");
 	}
 	/**
-	 * <p> Llama a métodos de tablero para ejecutar lanzamiento 
-	 * de proyectiles a tablero </p>
-	 * @input recibe int de coordenadas desde teclado 
+	 * <p> Llama a metodos de tablero para ejecutar lanzamiento 
+	 * de proyectiles a tablero recibe int de coordenadas desde teclado </p>
 	 */
 	public void lanzarHuevo() {
 		/*
@@ -122,7 +128,7 @@ public class MenuFirstLine {
 				break;
 			}
 			catch(Exception e) {
-				System.err.println("Ingrese una opción válida (entre 0-14).");
+				System.err.println("Ingrese una opcion valida (entre 0-14).");
 			}
 		}
 		System.out.println("Ingrese coordenada Y (entre 0-14):");
@@ -136,7 +142,7 @@ public class MenuFirstLine {
 				break;
 			}
 			catch(Exception e) {
-				System.err.println("Ingrese una opción válida (entre 0-14).");
+				System.err.println("Ingrese una opcion valida (entre 0-14).");
 			}
 		}
 		/*
@@ -145,7 +151,7 @@ public class MenuFirstLine {
 		this.tablero.lanzarHuevo(posX, posY);
 		System.out.println("\n" +"----- Proyectil Lanzado -----"+"\n");
 //		String selec = "";
-//		System.out.println("\n" + "Desea lanzar más proyectiles? (S/N)");
+//		System.out.println("\n" + "Desea lanzar mas proyectiles? (S/N)");
 //		selec = sc.next();
 //		if(selec.equalsIgnoreCase("s")) {
 //			casoDos();
@@ -160,7 +166,7 @@ public class MenuFirstLine {
 		tablero.mostrarMapaHuevos(); 
 	}
 	/**
-	 * <p> Llama a metodo para cálculo de puntaje y cantidad de proyectiles lanzados </p>
+	 * <p> Llama a metodo para calculo de puntaje y cantidad de proyectiles lanzados </p>
 	 */
 	public void mostrarPuntajeAcumulativo() {
 		int cantHuevos = tablero.getHuevos().size();
@@ -175,10 +181,10 @@ public class MenuFirstLine {
 		System.out.println("\n"+"---------- Posiciones del Enemigo ----------"+"\n");
 		tablero.revelarMatriz();
 		System.out.println(" ");
-		System.out.println("---------- Vehículos destruidos ----------");
+		System.out.println("---------- Vehiculos destruidos ----------");
 		tablero.mostrarDestruidos();
 		System.out.println(" \n \n \n ");
-		System.out.println("\n"+ "Gracias por participar de la simulación"+"\n"+
+		System.out.println("\n"+ "Gracias por participar de la simulacion"+"\n"+
 						   "---------- Comando FirstLine ----------");
 		System.exit(0);	
 	}

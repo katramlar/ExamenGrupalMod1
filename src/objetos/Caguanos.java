@@ -10,14 +10,19 @@ package objetos;
 public class Caguanos extends Carro {
 	
 	
-	
+	/**
+	 * Esta variable hace referencia al alcance de tiro del Caguano
+	 */
 	private int alcanceTiro;
+	/**
+	 * Esta variable hace referencia al color del confetti que dispara el Caguano
+	 */
 	private String colorConfetti;
 
 
 	/**
-	*Este constructor almacenara información proporionada por el Tablero 
-	*Además entrega información adicional al usuario, en caso de ser necesario
+	*Este constructor almacenara informacion proporionada por el Tablero 
+	*Ademas entrega informacion adicional al usuario, en caso de ser necesario
 	*
 	*/
 	

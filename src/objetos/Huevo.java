@@ -8,15 +8,26 @@ package objetos;
  */
 public class Huevo {
 	
-		
+	/**
+	 * Posicion X del huevo lanzado
+	 */
 	private int posX;
+	/**
+	 * Posicion Y del huevo lanzado
+	 */
 	private int posY;
+	/**
+	 * Puntaje del Huevo lanzado
+	 */
 	private int puntaje;
+	/**
+	 * Tipo de vehiculo golpeado (solo si golpea uno)
+	 */
 	private String vehiculoGolpeado;
 
 	/**
-	*Este constructor almacenara información proporionada por el usuario 
-	*por cada disparo, además del puntaje que puede obtener
+	*Este constructor almacenara informacion proporionada por el usuario 
+	*por cada disparo, ademas del puntaje que puede obtener
 	*
 	*/
 	

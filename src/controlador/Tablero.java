@@ -15,31 +15,39 @@ import objetos.Trupalla;
  */
 
 public class Tablero{
-
-    /**
-     * @param boardCarros  "Arreglo de 15 x 15 que permite escribir los carros para su visualizacion"
-     * @param boardHuevos "Arreglo de huevos de 15 x 15 que permite escribir los huevos para su visualizacion"
-     * @param carros "ArrayList de objetos tipo Carro para guardar cada Kromi, Caguano o Trupalla que se genere"
-     * @param huevos "ArrayList de objetos tipo Huevo para guardar los objetos disparados"
-     * @param contadorKromis "integer que permite mantener el numero total de kromis"
-     * @param contadorCaguanos "integer que permite mantener el numero total de caguanos"
-     * @param contadorTrupallas "integer que permite mantener el numero total de trupallas"
-     * @param puntajeFinal "integer que permite guardar el puntaje acumulativo y mostrarlo al final"
-     */
+	
+	/**
+	 * boardCarros  "Arreglo de 15 x 15 que permite escribir los carros para su visualizacion"
+	 */
     private String[][] boardCarros = new String[15][15];
     
+    /**
+     * boardHuevos "Arreglo de huevos de 15 x 15 que permite escribir los huevos para su visualizacion"
+     */
     private String[][] boardHuevos = new String[15][15];
-    
+    /**
+     * carros "ArrayList de objetos tipo Carro para guardar cada Kromi, Caguano o Trupalla que se genere"
+     */
     private ArrayList<Carro> carros = new ArrayList<Carro>();
-
+    /**
+     * huevos "ArrayList de objetos tipo Huevo para guardar los objetos disparados"
+     */
     private ArrayList<Huevo> huevos = new ArrayList<Huevo>();
-
+    /**
+     * contadorKromis "integer que permite mantener el numero total de kromis"
+     */
 	private int contadorKromis;
-
+	/**
+	 * contadorCaguanos "integer que permite mantener el numero total de caguanos"
+	 */
 	private int contadorCaguanos;
-
+	/**
+	 * contadorTrupallas "integer que permite mantener el numero total de trupallas"
+	 */
 	private int contadorTrupallas;
-	
+	/**
+	 * puntajeFinal "integer que permite guardar el puntaje acumulativo y mostrarlo al final"
+	 */
 	private int puntajeFinal;
 
 	/**
@@ -93,10 +101,10 @@ public class Tablero{
     	
     	Kromi kromi;
 		/* 
-		 *  El metodo generará aleatoriamente:
+		 *  El metodo generara aleatoriamente:
 		 *  - La fecha
 		 *  - La cantidad de ocupantes
-		 *  - El año de fabricación
+		 *  - El ano de fabricacion
 		 *  - La marca
 		 */
 		String dia = Integer.toString((int)(Math.random() * ((29 - 1) + 1)) + 1);
@@ -205,7 +213,7 @@ public class Tablero{
     	
     	Caguanos caguano;
 		/* 
-		 *  El metodo generará aleatoriamente:
+		 *  El metodo generara aleatoriamente:
 		 *  - La fecha
 		 *  - La cantidad de ocupantes
 		 *  - El alcance de tiro
@@ -317,7 +325,7 @@ public class Tablero{
     	
     	Trupalla trupalla;
 		/* 
-		 *  El metodo generará aleatoriamente:
+		 *  El metodo generara aleatoriamente:
 		 *  - La fecha
 		 *  - La cantidad de ocupantes
 		 *  - El nivel de armadura
@@ -457,7 +465,7 @@ public class Tablero{
     /**
      * <p> Metodo que permite lanzar un huevo y asignar puntaje, exista o no un hit en un carro.  </p>
      * 
-     * @return "No existen valores de retorno, solo lógica interna "
+     * "No existen valores de retorno, solo logica interna "
      */
 	
 	public void lanzarHuevo(int posX2, int posY2){
@@ -594,7 +602,7 @@ public class Tablero{
     /**
      * <p> Metodo que permite generar el mapa lleno de carros, a traves de llamados a los creadores de carros anteriormente declarados.  </p>
      * 
-     * @return "No existen valores de retorno, solo lógica interna "
+     * "No existen valores de retorno, solo logica interna "
      */
 	
 	
@@ -661,7 +669,7 @@ public class Tablero{
     /**
      * <p> Metodo que dibuja la matriz de carros y los muestra .  </p>
      * 
-     * @return "No existen valores de retorno,per se, solo lógica interna. Pero si dibuja en la consola los carros en la matriz "
+     * "No existen valores de retorno,per se, solo logica interna. Pero si dibuja en la consola los carros en la matriz "
      */
     
     public void revelarMatriz(){
@@ -706,7 +714,7 @@ public class Tablero{
     /**
      * <p> Metodo que dibuja la matriz de huevos y los muestra .  </p>
      * 
-     * @return "No existen valores de retorno,per se, solo lógica interna. Pero si dibuja en la consola los huevos en la matriz "
+     *  "No existen valores de retorno,per se, solo logica interna. Pero si dibuja en la consola los huevos en la matriz "
      */
     
     public void mostrarMapaHuevos() {
@@ -751,7 +759,7 @@ public class Tablero{
     /**
      * <p> Metodo que calcula el puntaje actual del jugador en base a los hits contra carros y despliega informacion relacionada .  </p>
      * 
-     * @return "No existen valores de retorno,per se, solo lógica interna. Pero si despiega info general sobre carros restantes, huevos lanzados, huevos impactados, puntaje y datos del huevo "
+     * "No existen valores de retorno,per se, solo logica interna. Pero si despiega info general sobre carros restantes, huevos lanzados, huevos impactados, puntaje y datos del huevo "
      */
     
     public void calcularPuntaje(){
@@ -783,7 +791,7 @@ public class Tablero{
     	
     	System.out.println("> puntaje por huevo: \n");
     	for(int i=0;i<huevos.size();i++) {
-    		System.out.println("Info de Huevo número "+i+1);
+    		System.out.println("Info de Huevo numero "+i+1);
     		System.out.println(huevos.get(i).toString());
     	}
     	
@@ -802,7 +810,7 @@ public class Tablero{
     /**
      * <p> Metodo que permite mostrar los carros destruidos .  </p>
      * 
-     * @return "No existen valores de retorno,per se, solo lógica interna. Pero si despliega informacion por consola de los objetos destruidos "
+     * "No existen valores de retorno,per se, solo logica interna. Pero si despliega informacion por consola de los objetos destruidos "
      */
     
     public void mostrarDestruidos() {
@@ -821,6 +829,7 @@ public class Tablero{
     /*
     * GETTERS Y SETTERS 
     */
+    
 
     public String[][] getBoard(){
         return this.boardCarros;

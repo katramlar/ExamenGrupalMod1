@@ -2,11 +2,14 @@ package objetos;
 
 public class Trupalla extends Carro {
 	
-	/*
-	 * Campos de clase Trupalla 
-	 */
 
+	/**
+	 * Nivel de armadura de la Trupalla
+	 */
 	private int nivelArmadura;
+	/**
+	 * Nombre del controlador de la trupalla
+	 */
 	private String nombreControlador;
 	
 	/*

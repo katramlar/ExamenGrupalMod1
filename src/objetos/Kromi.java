@@ -10,13 +10,18 @@ package objetos;
 public class Kromi extends Carro {
 	
 		
-
+	/**
+	 * Ano de fabricacion de la Kromi
+	 */
 	private int anoFabricacion;
+	/**
+	 * Marca de la Kromi
+	 */
 	private String marca;
 
 	/**
-	*Este constructor almacenara información proporionada por el Tablero 
-	*Además entrega información adicional al usuario, en caso de ser necesario
+	*Este constructor almacenara informacion proporionada por el Tablero 
+	*Ademas entrega informacion adicional al usuario, en caso de ser necesario
 	*
 	*/
 	
@@ -80,7 +85,7 @@ public class Kromi extends Carro {
 						  +" Orientacion del objeto: " + Character.toString(this.orientacion) + "\n"
 						  +" Cantidad de ocupantes del objeto: " + this.cantOcupantes + "\n"
 						  +" Fecha de ingreso a la institucion del objeto: " + this.fecha + "\n"
-						  +" Año de fabricacion del objeto: " + this.anoFabricacion + "\n"
+						  +" Ano de fabricacion del objeto: " + this.anoFabricacion + "\n"
 						  +" Marca del objeto: " + this.marca + "\n"
 						  +" Vidas restantes del objeto: " + this.vidas + "\n");				
 		
