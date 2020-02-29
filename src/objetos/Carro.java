@@ -1,8 +1,7 @@
 package objetos;
 
 /**
- * Corresponde a la Clase Madre de los todos los Carros que estaran distruidos en el tablero
- * @author  katramlar, ivillarroelr, victorSoto2712
+ * @author katramlar, ivanillaroelr, victorSoto2712
  *
  */
 

@@ -1,5 +1,10 @@
 package objetos;
 
+/**
+ * @author katramlar, ivanillaroelr, victorSoto2712
+ *
+ */
+
 public class Trupalla extends Carro {
 	
 

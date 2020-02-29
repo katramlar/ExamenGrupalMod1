@@ -1,10 +1,7 @@
 package objetos;
 
-
-
 /**
- * Corresponde a una de las clases hijas del Carro
- * @author  katramlar, ivillarroelr, victorSoto2712
+ * @author katramlar, ivanillaroelr, victorSoto2712
  *
  */
 public class Caguanos extends Carro {

@@ -2,8 +2,8 @@ package objetos;
 
 
 
-/**Este objeto es quien proporcionara informacion de los tiro en el tablero
- * @author  katramlar, ivillarroelr, victorSoto2712
+/**
+ * @author katramlar, ivanillaroelr, victorSoto2712
  *
  */
 public class Huevo {
